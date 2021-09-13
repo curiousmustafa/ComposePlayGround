@@ -4,48 +4,57 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.curiousdev.composeplayground.dynamicreceipt.custom.ReceiptLayout
 import com.curiousdev.composeplayground.dynamicreceipt.model.MyPair
 import com.curiousdev.composeplayground.dynamicreceipt.model.MyTransaction
+import com.curiousdev.composeplayground.dynamicreceipt.viewmodel.ReceiptViewModel
 import com.curiousdev.composeplayground.ui.theme.ComposePlayGroundTheme
+import com.mobiiot.androidqapi.api.CsPrinter
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposePlayGroundTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    MainUI(onBitmapCreated = {
-                        if (it != null) {
-                            
-                        }
-                    })
-                }
+                MainUI()
             }
         }
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
-fun MainUI(onBitmapCreated: (bitmap: Bitmap?) -> Unit) {
+fun MainUI() {
     val response = mutableListOf(
         MyPair("image", R.drawable.ic_constructor),
         MyPair("splitter", "*"),
         MyPair("merchant_name", "Tom & Jerry"),
+
+        MyPair("transactions", listOf(
+            MyTransaction(item = "T shirt",qty = 2,10.00,20.00),
+            MyTransaction(item = "Skirt",qty = 1,6.00,6.00),
+            MyTransaction(item = "Shoes",qty = 5,20.00,100.00),
+            MyTransaction(item = "Bag",qty = 4,3.00,12.00),
+        )
+        ),
         MyPair("time", "10:34:28 AM "),
         MyPair("merchant_id", "34389838439"),
         MyPair("terminal_id", "34389838439"),
@@ -66,9 +75,8 @@ fun MainUI(onBitmapCreated: (bitmap: Bitmap?) -> Unit) {
         MyPair("overall_total", 150.00),
         MyPair("splitter", "-"),
         MyPair("city", "Dubai"),
-        MyPair("snap_qr", R.drawable.ic_qr),
     )
-
+    val viewModel: ReceiptViewModel = viewModel()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -78,11 +86,35 @@ fun MainUI(onBitmapCreated: (bitmap: Bitmap?) -> Unit) {
     ) {
         AndroidView(
             factory = { context ->
-                val receipt = ReceiptLayout(ctx = context,response) { bitmap ->
-                    onBitmapCreated(bitmap)
+                val receipt = ReceiptLayout(ctx = context,response) { bitMap ->
+                    viewModel.bitmapCreated(bitMap)
                 }
                 receipt
             }
         )
+        DisplayBitmapWithReceipt()
     }
+}
+
+@Composable
+fun DisplayBitmapWithReceipt(){
+    val viewModel: ReceiptViewModel = viewModel()
+    val bitmap = viewModel.onBitmapGenerated.observeAsState().value
+    var isDialogShown by remember {
+        mutableStateOf(bitmap==null)
+    }
+    if (isDialogShown) {
+        Dialog(onDismissRequest = { isDialogShown = false }) {
+            Text(text = "Bit map is null")
+        }
+    }
+
+    if (bitmap == null){
+        isDialogShown = true
+    } else{
+        isDialogShown = false
+        Image(bitmap = bitmap.asImageBitmap(), contentDescription = "bitmap" )
+        CsPrinter.printBitmap(bitmap)
+    }
+
 }

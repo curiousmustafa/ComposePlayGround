@@ -24,7 +24,6 @@ import com.curiousdev.composeplayground.R
 import com.curiousdev.composeplayground.dynamicreceipt.model.MyPair
 import com.curiousdev.composeplayground.dynamicreceipt.model.MyTransaction
 
-@Preview
 @Composable
 fun ReceiptPage(response: MutableList<MyPair> = mutableListOf()){
     Column(modifier = Modifier
