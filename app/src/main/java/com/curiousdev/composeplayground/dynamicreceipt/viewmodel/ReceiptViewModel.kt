@@ -6,10 +6,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ReceiptViewModel : ViewModel(){
-    private var _onBitmapCreated = MutableLiveData<Bitmap?>(null)
-    var onBitmapGenerated: LiveData<Bitmap?> = _onBitmapCreated
+    private var _onLogoCreated = MutableLiveData<Bitmap?>(null)
+    var onLogoGenerated: LiveData<Bitmap?> = _onLogoCreated
+    private var _onBarCodeCreated = MutableLiveData<Bitmap?>(null)
+    var onBarCodeGenerated: LiveData<Bitmap?> = _onBarCodeCreated
+    private var _onQrCodeCreated = MutableLiveData<Bitmap?>(null)
+    var onQrCodeGenerated: LiveData<Bitmap?> = _onQrCodeCreated
 
-    fun bitmapCreated(bitmap: Bitmap?) {
-        _onBitmapCreated.value = bitmap
+    fun logoCreated(bitmap: Bitmap?) {
+        _onLogoCreated.value = bitmap
     }
+    fun barCodeCreated(bitmap: Bitmap?) {
+        _onBarCodeCreated.value = bitmap
+    }
+    fun qrCreated(bitmap: Bitmap?) {
+        _onQrCodeCreated.value = bitmap
+    }
+
 }

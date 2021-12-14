@@ -1,0 +1,336 @@
+{
+    "sort" : [
+        "image",
+        "merchant_name",
+        "date",
+        "merchant_id",
+        "terminal_id",
+        "transaction_id",
+        "voucher_no",
+        "car_number",
+        "customer_no",
+        "splitter_1",
+        "header",
+        "splitter_2",
+        "details",
+        "total",
+        "splitter_3",
+        "address",
+        "city",
+        "country",
+        "phone",
+        "splitter_4",
+        "bar_code",
+        "qr"
+    ],
+    "image": "logo",
+    "merchant_name" : "Tom And Jerry",
+    "date" : "22-10-2021 10:21 AM",
+    "merchant_id" : "34343434534",
+    "terminal_id" : "435734844743",
+    "transaction_id" : "02938292",
+    "voucher_no" : "43-45454445",
+    "car_number" : "348349483495834",
+    "customer_no" : "345",
+    "splitter_1" : "*",
+    "header" : "Tax Invoice",
+    "splitter_2" : "*",
+    "details":{
+        "total_qty" : 1,
+        "total_amount" : 4.0,
+        "tax" : 0.20,
+        "transactions" : [
+
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            },
+            {
+                "name" : "T Shirt",
+                "service" : "Pressing",
+                "original_price" : 4.00,
+                "discount" : 0.00,
+                "charges" : 4.00,
+                "quantity" : 1,
+                "subtotal" : 4.20,
+                "worker" : "Mustafa Ibrahim"
+            }
+        ]
+    },
+    "splitter_3" : "*",
+    "total" : 4.20,
+    "splitter_4" : "*",
+    "address" : "Dubai Festival City - Dubai - United Arab Emirates",
+    "city" : "Dubai",
+    "country" : "United Arab Emirates",
+    "phone" : "111",
+    "splitter_5" : "*",
+    "bar_code" : "www.google.com",
+    "qr" : "www.google.com"
+}

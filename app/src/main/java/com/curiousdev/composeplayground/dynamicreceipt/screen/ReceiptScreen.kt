@@ -14,48 +14,156 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.curiousdev.composeplayground.dynamicreceipt.model.ReceiptResponse
 import com.curiousdev.composeplayground.R
-import com.curiousdev.composeplayground.dynamicreceipt.model.MyPair
-import com.curiousdev.composeplayground.dynamicreceipt.model.MyTransaction
+import com.curiousdev.composeplayground.dynamicreceipt.model.ReceiptDetails
 
 @Composable
-fun ReceiptPage(response: MutableList<MyPair> = mutableListOf()){
+fun ReceiptPage(response: ReceiptResponse = ReceiptResponse(sort = mutableListOf())){
     Column(modifier = Modifier
         .background(Color.White)
         .fillMaxSize()
         .padding(horizontal = 15.dp, vertical = 30.dp)){
-        response.forEach { (key, value) ->
-            when {
-                key.equals("image",true) -> {
-                    DisplayImage(image = value as Int)
+        response.sort.forEach {
+            val title = it.replace("_"," ",true).replaceFirstChar {char->
+                char.uppercase()
+            }
+            when{
+                it.equals("image",true) -> {
+                    if (response.image != null) {
+                        DisplayImage(image = R.drawable.android)
+                    } 
                 }
-                key.equals("snap_qr",true) -> {
-                    DisplayImage(image = value as Int)
+                it.equals("snap_qr",true) -> {
+                    DisplayImage(image = R.drawable.android)
                 }
-                key.equals("transactions",true) -> {
-                    TransactionDetails(transactions = value as MutableList<MyTransaction>)
+                it.equals("details",true) -> {
+                    if (response.details != null) {
+                        TransactionDetails(details = response.details)
+                    }
                 }
 
-                key.equals("merchant_name",true) -> {
-                    DisplayMerchantName(name = value.toString())
+                it.equals("merchant_name",true) -> {
+                    if (response.merchantName != null) {
+                        DisplayMerchantName(name = response.merchantName)
+                    }
                 }
-                key.equals("splitter",true) -> {
-                    DisplaySeparator(pattern = value.toString())
+                it.startsWith("splitter",true) -> {
+                    DisplaySeparator(pattern = "*")
                 }
-                else -> {
-                    var title = key.replace("_"," ",true)
-                    title = title.capitalize(Locale("en"))
-                    DisplayText(
-                        title =title,
-                        value = value.toString()
-                    )
+                it.equals("date",true) -> {
+                    if (response.date != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.date
+                        )
+                    }
                 }
+                it.equals("merchant_id",true) -> {
+                    if (response.merchantId != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.merchantId
+                        )
+                    }
+                }
+                it.equals("terminal_id",true) -> {
+                    if (response.terminalId != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.terminalId
+                        )
+                    }
+                }
+                it.equals("transaction_id",true) -> {
+                    if (response.transactionId != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.transactionId
+                        )
+                    }
+                }
+                it.equals("voucher_no",true) -> {
+                    if (response.voucherNo != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.voucherNo
+                        )
+                    }
+                }
+                it.equals("car_number",true) -> {
+                    if (response.carNumber != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.carNumber
+                        )
+                    }
+                }
+                it.equals("customer_no",true) -> {
+                    if (response.customerNo != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.customerNo
+                        )
+                    }
+                }
+                it.equals("header",true) -> {
+                    if (response.header != null) {
+                        DisplayHeader(
+                            name = response.header
+                        )
+                    }
+                }
+                it.equals("total",true) -> {
+                    if (response.total != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.total.toString()
+                        )
+                    }
+                }
+                it.equals("address",true) -> {
+                    if (response.address != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.address
+                        )
+                    }
+                }
+                it.equals("city",true) -> {
+                    if (response.city != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.city
+                        )
+                    }
+                }
+                it.equals("country",true) -> {
+                    if (response.country != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.country
+                        )
+                    }
+                }
+                it.equals("phone",true) -> {
+                    if (response.phone != null) {
+                        DisplayText(
+                            title =title,
+                            value = response.phone
+                        )
+                    }
+                }
+                it.equals("bar_code",true) -> {
+                    if (response.barCode != null) {
+                        ShowBarCode(value = response.barCode)
+                    }
+                }
+
             }
         }
     }
@@ -63,13 +171,24 @@ fun ReceiptPage(response: MutableList<MyPair> = mutableListOf()){
 }
 
 @Composable
+fun ShowBarCode(value: String) {
+    Image(
+        painter = painterResource(id = R.drawable.barcode),
+        contentDescription = "barcode",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 20.dp),
+    )
+}
+
+@Composable
 fun DisplayText(title: String, value: String){
     Text(
         text = buildAnnotatedString {
-            withStyle(MaterialTheme.typography.body2.toSpanStyle()){
+            withStyle(MaterialTheme.typography.h6.toSpanStyle()){
                 append("$title: ")
             }
-            withStyle(MaterialTheme.typography.caption.toSpanStyle()){
+            withStyle(MaterialTheme.typography.h6.toSpanStyle()){
                 append(value)
             }
         }
@@ -80,10 +199,22 @@ fun DisplayText(title: String, value: String){
 fun DisplayMerchantName(name: String){
     Text(
         text = name,
-        style = MaterialTheme.typography.h6,
+        style = MaterialTheme.typography.h4,
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp),
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun DisplayHeader(name: String){
+    Text(
+        text = name,
+        style = MaterialTheme.typography.h3,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 20.dp),
         textAlign = TextAlign.Center
     )
 }
@@ -95,10 +226,9 @@ fun DisplayImage(image: Int){
             painter = painterResource(id = image),
             contentDescription = "image",
             modifier = Modifier
-                .size(80.dp)
+                .size(250.dp)
                 .align(Alignment.Center)
                 .padding(vertical = 10.dp),
-            colorFilter = ColorFilter.tint(Color.Black),
         )
     }
 }
@@ -110,39 +240,60 @@ fun DisplaySeparator(pattern: String){
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 20.dp),
-        style = MaterialTheme.typography.h6
+        style = MaterialTheme.typography.h4
     )
 }
 
 @Composable
-fun TransactionDetails(transactions: MutableList<MyTransaction>){
+fun TransactionDetails(details: ReceiptDetails){
     Column(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 10.dp),
+        horizontalAlignment = Alignment.Start
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            Text(text = "Item",style = MaterialTheme.typography.h6)
-            Text(text = "Qty",style = MaterialTheme.typography.h6)
-            Text(text = "Price",style = MaterialTheme.typography.h6)
-            Text(text = "Total",style = MaterialTheme.typography.h6)
-        }
-        LazyColumn{
-            items(transactions){transaction->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    Text(text = transaction.item,style = MaterialTheme.typography.body1)
-                    Text(text = transaction.qty.toString(),style = MaterialTheme.typography.body1)
-                    Text(text = transaction.price.toString(),style = MaterialTheme.typography.body1)
-                    Text(text = transaction.total.toString(),style = MaterialTheme.typography.body1)
+        LazyColumn(){
+            items(details.transactions!!){t->
+                Column {
+                    if (t.name!= null) {
+                        DisplayText(title = "Name", value = t.name)
+                    }
+                    if (t.service!= null) {
+                        DisplayText(title = "Service", value = t.service)
+                    }
+                    if (t.originalPrice!= null) {
+                        DisplayText(title = "Original Price", value = t.originalPrice.toString())
+                    }
+                    if (t.discount!= null) {
+                        DisplayText(title = "Discount", value = t.discount.toString())
+                    }
+                    if (t.charges!= null) {
+                        DisplayText(title = "Charges", value = t.charges.toString())
+                    }
+                    if (t.quantity!= null) {
+                        DisplayText(title = "Quantity", value = t.quantity.toString())
+                    }
+                    if (t.subtotal!= null) {
+                        DisplayText(title = "SubTotal", value = t.subtotal.toString())
+                    }
+                    if (t.worker!= null) {
+                        DisplayText(title = "Worker", value = t.worker)
+                    }
                 }
             }
         }
+        
+        Spacer(modifier = Modifier.height(15.dp))
+        if (details.totalQty != null) {
+            DisplayText(title = "Total QTY", value = details.totalQty.toString())
+        }
+        Spacer(modifier = Modifier.height(15.dp))
+        if (details.totalQty != null) {
+            DisplayText(title = "Total Amount", value = "${details.totalAmount.toString()} AED")
+        }
+        if (details.totalQty != null) {
+            DisplayText(title = "Total QTY", value = "${details.tax.toString()} AED")
+        }
+
     }
 }

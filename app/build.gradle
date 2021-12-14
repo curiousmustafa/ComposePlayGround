@@ -74,7 +74,12 @@ dependencies {
 
     // compose viewmodel
     def compose_viewmodel_version ="1.0.0-alpha07"
+    def compose_navigation = "2.4.0-alpha09"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$compose_viewmodel_version"
     // compose with livedata
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    // compose with navigation
+    implementation "androidx.navigation:navigation-compose:$compose_navigation"
+    // sunmi printer
+    implementation 'com.sunmi:printerlibrary:1.0.13'
 }
